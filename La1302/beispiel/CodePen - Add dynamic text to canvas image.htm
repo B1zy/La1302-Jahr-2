@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="UTF-8">
+  
+
+    <link rel="apple-touch-icon" type="image/png" href="https://cpwebassets.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png">
+
+    <meta name="apple-mobile-web-app-title" content="CodePen">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+
+    <link rel="mask-icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/logo-pin-b4b4269c16397ad2f0f7a01bcdf513a1994f4c94b8af2f191c09eb0d601762b1.svg" color="#111">
+
+
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>CodePen - Add dynamic text to canvas image</title>
+
+  <link rel="stylesheet" media="screen" href="CodePen%20-%20Add%20dynamic%20text%20to%20canvas%20image_files/fullpage-7d0085e88e3f06095d712efc55f79fc6aedaeed08967649de30.css">
+  
+
+    <link rel="apple-touch-icon" type="image/png" href="https://cpwebassets.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png">
+
+    <meta name="apple-mobile-web-app-title" content="CodePen">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+
+    <link rel="mask-icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/logo-pin-b4b4269c16397ad2f0f7a01bcdf513a1994f4c94b8af2f191c09eb0d601762b1.svg" color="#111">
+
+
+
+
+
+  <title>CodePen - Add dynamic text to canvas image</title>
+
+  <style>
+    html { font-size: 15px; }
+    html, body { margin: 0; padding: 0; min-height: 100%; }
+    body { height:100%; display: flex; flex-direction: column; }
+    .referer-warning {
+      background: black;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+      padding: 0.75em;
+      color: white;
+      text-align: center;
+      font-family: 'Lato', 'Lucida Grande', 'Lucida Sans Unicode', Tahoma, system-ui, Sans-Serif;
+      line-height: 1.2;
+      font-size: 1rem;
+      position: relative;
+      z-index: 2;
+    }
+    .referer-warning span { font-family: initial; }
+    .referer-warning h1 { font-size: 1.2rem; margin: 0; }
+    .referer-warning a { color: #56bcf9; }
+  </style>
+</head>
+
+<body class="">
+  <div class="referer-warning">
+    <h1><span>⚠️</span> Do not enter passwords or personal information on this page. <span>⚠️</span></h1>
+      This is a code demo posted by a web developer on <a href="https://codepen.io/">CodePen</a>.
+    <br>
+    A referer from CodePen is required to render this page view, and your browser is not sending one (<a href="https://blog.codepen.io/2017/10/05/regarding-referer-headers/" target="_blank" rel="noreferrer noopener">more details</a>).
+  </div>
+
+  <div id="result-iframe-wrap" role="main">
+    <iframe id="result" srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot; &gt;
+
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  
+
+    &lt;link rel=&quot;apple-touch-icon&quot; type=&quot;image/png&quot; href=&quot;https://cpwebassets.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png&quot; /&gt;
+
+    &lt;meta name=&quot;apple-mobile-web-app-title&quot; content=&quot;CodePen&quot;&gt;
+
+    &lt;link rel=&quot;shortcut icon&quot; type=&quot;image/x-icon&quot; href=&quot;https://cpwebassets.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico&quot; /&gt;
+
+    &lt;link rel=&quot;mask-icon&quot; type=&quot;image/x-icon&quot; href=&quot;https://cpwebassets.codepen.io/assets/favicon/logo-pin-b4b4269c16397ad2f0f7a01bcdf513a1994f4c94b8af2f191c09eb0d601762b1.svg&quot; color=&quot;#111&quot; /&gt;
+
+
+
+  
+    &lt;script src=&quot;https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-2c7831bb44f98c1391d6a4ffda0e1fd302503391ca806e7fcc7b9b87197aec26.js&quot;&gt;&lt;/script&gt;
+
+
+  &lt;title&gt;CodePen - Add dynamic text to canvas image&lt;/title&gt;
+
+    &lt;link rel=&quot;canonical&quot; href=&quot;https://codepen.io/ahebler/pen/KzyQBZ&quot;&gt;
+  
+  
+  
+  
+&lt;style&gt;
+body {
+  background: #222;
+  color: #fff;
+  position: relative;
+  text-align: center;
+  font-size: 1rem;
+  font-family: sans-serif;
+  padding-bottom: 3em;
+}
+
+.page-wrap {
+  display: inline-block;
+  margin: 2em auto;
+}
+
+.controls__input {
+  display: block;
+  margin: 0 auto;
+  background: none;
+  border: none;
+  font-size: 1em;
+  padding-bottom: 0.5em;
+  border-bottom: 2px solid #ccc;
+  text-align: center;
+  outline: none;
+  color: #fff;
+}
+.controls__btn {
+  background: dodgerblue;
+  color: #fff;
+  border: none;
+  font-size: 1em;
+}
+.controls__label {
+  display: block;
+  font-size: 0.8em;
+  padding-top: 0.3em;
+  margin-bottom: 2em;
+}
+
+canvas {
+  background-color: #eee;
+  transition: opacity 0.3s;
+}
+canvas.show {
+  opacity: 1;
+}
+
+.canvas-wrap {
+  margin-top: 50px;
+  position: relative;
+}
+
+#canvasID {
+  z-index: 9999;
+}
+&lt;/style&gt;
+
+  &lt;script&gt;
+  window.console = window.console || function(t) {};
+&lt;/script&gt;
+
+  
+  
+&lt;/head&gt;
+
+&lt;body translate=&quot;no&quot;&gt;
+  &lt;h1&gt;Overlay text on canvas image and save as base64&lt;/h1&gt;
+&lt;div class=&quot;page-wrap&quot;&gt;
+  &lt;div class=&quot;controls&quot;&gt;
+    &lt;input class=&quot;controls__input&quot; type=&quot;file&quot; id=&quot;imageLoader&quot; name=&quot;imageLoader&quot;/&gt;
+    &lt;label class=&quot;controls__label&quot; for=&quot;name&quot;&gt;First, choose an image.&lt;/label&gt;
+    
+    &lt;input class=&quot;controls__input&quot; id=&quot;name&quot; type=&quot;text&quot; value=&quot;&quot;/&gt;
+    &lt;label class=&quot;controls__label&quot; for=&quot;name&quot;&gt;Overlay Text&lt;/label&gt;
+  &lt;/div&gt;
+  &lt;div id=&quot;canvas-wrap&quot;&gt;
+     &lt;canvas style=&quot;display:block&quot; id=&quot;imageCanvas&quot; width=400px height=400px&gt;
+        &lt;canvas id=&quot;canvasID&quot;&gt;&lt;/canvas&gt;
+    &lt;/canvas&gt; 
+  &lt;/div&gt;
+  
+&lt;/div&gt;
+  &lt;script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'&gt;&lt;/script&gt;
+&lt;script src='https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/dropzone.js'&gt;&lt;/script&gt;
+      &lt;script id=&quot;rendered-js&quot; &gt;
+var text_title = &quot;Overlay text&quot;;
+var imageLoader = document.getElementById('imageLoader');
+imageLoader.addEventListener('change', handleImage, false);
+var canvas = document.getElementById('imageCanvas');
+var ctx = canvas.getContext('2d');
+var img = new Image();
+img.crossOrigin = &quot;anonymous&quot;;
+
+window.addEventListener('load', DrawPlaceholder);
+
+function DrawPlaceholder() {
+  img.onload = function () {
+    DrawOverlay(img);
+    DrawText();
+    DynamicText(img);
+  };
+  img.src = 'https://unsplash.it/400/400/?random';
+
+}
+function DrawOverlay(img) {
+  ctx.drawImage(img, 0, 0);
+  ctx.fillStyle = 'rgba(30, 144, 255, 0.4)';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+}
+function DrawText() {
+  ctx.fillStyle = &quot;white&quot;;
+  ctx.textBaseline = 'middle';
+  ctx.font = &quot;50px 'Montserrat'&quot;;
+  ctx.fillText(text_title, 50, 50);
+}
+function DynamicText(img) {
+  document.getElementById('name').addEventListener('keyup', function () {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    DrawOverlay(img);
+    DrawText();
+    text_title = this.value;
+    ctx.fillText(text_title, 50, 50);
+  });
+}
+function handleImage(e) {
+  var reader = new FileReader();
+  var img = &quot;&quot;;
+  var src = &quot;&quot;;
+  reader.onload = function (event) {
+    img = new Image();
+    img.onload = function () {
+      canvas.width = img.width;
+      canvas.height = img.height;
+      ctx.drawImage(img, 0, 0);
+    };
+    img.src = event.target.result;
+    src = event.target.result;
+    canvas.classList.add(&quot;show&quot;);
+    DrawOverlay(img);
+    DrawText();
+    DynamicText(img);
+  };
+
+  reader.readAsDataURL(e.target.files[0]);
+
+}
+function convertToImage() {
+  window.open(canvas.toDataURL('png'));
+}
+document.getElementById('download').onclick = function download() {
+  convertToImage();
+};
+//# sourceURL=pen.js
+    &lt;/script&gt;
+
+  
+&lt;/body&gt;
+
+&lt;/html&gt;
+" sandbox="allow-forms allow-modals allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-top-navigation-by-user-activation allow-downloads allow-presentation" allow="camera; display-capture; geolocation; microphone; web-share" allowtransparency="true" allowpaymentrequest="true" allowfullscreen="true" class="result-iframe">
+      </iframe>
+  </div>
+
+
+
+
+</body></html>
